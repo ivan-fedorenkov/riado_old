@@ -32,11 +32,11 @@ gem 'jquery-rails'
 
 group :test, :development do
   gem 'rspec-rails', '~> 2.5'
+  gem 'railroady'
 end
 
 group :test do
   # Pretty printed test output
-  gem 'turn', :require => false
   gem 'cucumber-rails', :require => false
   gem 'capybara'
   gem 'database_cleaner'
