@@ -43,3 +43,4 @@ group :test do
 end
 
 gem 'haml'
+gem 'factory_girl'
