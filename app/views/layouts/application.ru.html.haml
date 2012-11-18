@@ -31,5 +31,14 @@
           .well
             %legend Текущий регион
             - if @current_region
-              %a{:href => '#region', :data => {:toggle => 'modal'}}= @current_region
+              %a{:href => '#regions', :data => {:toggle => 'modal'}}= @current_region
+            - if @regions
+              #regions{:class => ['modal','hide','fade']}
+                .modal-header
+                  %h3 Выбор региона
+                .modal-body
+                  %ul
+                  - @regions.each do |r|
+                    %li 
+                      = link_to r.name, set_current_region_path(:region => r.name.to_uri)
 

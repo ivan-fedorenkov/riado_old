@@ -7,3 +7,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+FactoryGirl.create(:region, :name => 'Российская Федерация', :default => true)
+FactoryGirl.create(:region, :name => 'Москва')
+FactoryGirl.create(:region, :name => 'Санкт-Петербург')
+FactoryGirl.create(:region, :name => 'Чеченская Республика')

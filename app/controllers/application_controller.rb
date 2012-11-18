@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  before_filter :set_regions
   before_filter :set_current_region
   
   protect_from_forgery
@@ -14,5 +15,9 @@ private
         @current_region = Region.default
       end
     end
+  end
+private
+  def set_regions
+    @regions = Region.all
   end
 end
