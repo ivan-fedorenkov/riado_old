@@ -30,5 +30,6 @@
         .span4
           .well
             %legend Текущий регион
-            %a{:href => '#region', :data => {:toggle => 'modal'}}= @current_region
+            - if @current_region
+              %a{:href => '#region', :data => {:toggle => 'modal'}}= @current_region
 

@@ -11,12 +11,30 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121117190552) do
+ActiveRecord::Schema.define(:version => 20121118095354) do
 
-  create_table "regions", :primary_key => "code", :force => true do |t|
-    t.string "name"
+  create_table "acols", :id => false, :force => true do |t|
+    t.string   "name",       :null => false
+    t.integer  "region_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  add_index "regions", ["name"], :name => "index_regions_on_name", :unique => true
+  add_index "acols", ["name"], :name => "index_acols_on_name", :unique => true
+  add_index "acols", ["region_id"], :name => "index_acols_on_region_id", :unique => true
+
+  create_table "advocates", :force => true do |t|
+    t.string   "name"
+    t.integer  "acol_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "regions", :force => true do |t|
+    t.string  "name",                       :null => false
+    t.boolean "default", :default => false
+  end
+
+  add_index "regions", ["name"], :name => "index_regions_on_name"
 
 end

@@ -1,5 +1,5 @@
 Riado::Application.routes.draw do
-  get 'regions/:code/set_current' => 'regions#set_current', :as => 'set_current_region'
+  get 'regions/:region/set_current' => 'regions#set_current', :as => 'set_current_region'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

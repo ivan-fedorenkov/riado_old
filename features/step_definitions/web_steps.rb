@@ -4,6 +4,6 @@
   visit(root_path)
 end
 
-То /^я должен видеть "(.*?)"$/ do |контент|
-  page.should have_content(контент)
+То /^я должен видеть "(.*?)"$/ do |content|
+  page.should have_content(content)
 end

@@ -8,8 +8,8 @@ private
     if !(request.fullpath =~ /regions\/\d+\/set_current/)
       if session[:current_region]
         @current_region = session[:current_region]
-      elsif
-        @current_region = Region.find_by_code(cookies[:current_region_code])
+      elsif cookies[:current_region_id]
+        @current_region = Region.find(cookies[:current_region_id])
       else
         @current_region = Region.default
       end

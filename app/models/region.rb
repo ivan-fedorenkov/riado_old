@@ -4,6 +4,7 @@ class Region < ActiveRecord::Base
   end
 
   def self.default
-    self.find(0)
+    self.where(:default => true).first
   end
+
 end

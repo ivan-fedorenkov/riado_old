@@ -1,9 +1,11 @@
 #encoding: utf-8
 
-Допустим /^существует регион "(.*?)" с региональным кодом (\d+)$/ do |регион, код|
-  FactoryGirl.create(:region, :code => код, :name => регион)
+Допустим /^существует регион "(.*?)"( \(по-умолчанию\))?$/ do |region, default|
+  region = FactoryGirl.build(:region, :name => region)
+  region.default = true if default
+  region.save!
 end
 
-Допустим /^я выбрал регион "(.*?)"$/ do |регион|
-  visit(set_current_region_path(Region.find_by_name(регион)))
+Допустим /^я выбрал регион "(.*?)"$/ do |region|
+  visit(set_current_region_path(:region => region.to_uri))
 end
