@@ -26,8 +26,9 @@
               %button{:type => 'button', :class => 'close', :data => {:dismiss => 'alert'}} ×
               = message
       .row
-        .span8= yield
+        #content.span8= yield
         .span4
           .well
-            %a{:href => '#region', :data => {:toggle => 'modal'}} Region
+            %legend Текущий регион
+            %a{:href => '#region', :data => {:toggle => 'modal'}}= @current_region
 
