@@ -26,8 +26,8 @@
               %button{:type => 'button', :class => 'close', :data => {:dismiss => 'alert'}} ×
               = message
       .row
-        #content.span8= yield
-        .span4
+        #center.span8= yield
+        #right.span4
           .well
             %legend Текущий регион
             %p
@@ -44,6 +44,5 @@
                       %li 
                         = link_to r.name, set_current_region_path(:region => r.name.to_uri)
             %p
-              %strong Адвокатская палата: 
-              = link_to 'Федеральная палата адвокатов РФ', root_path
+              = link_to highlight_acol_prefix(@current_region.acol.name).html_safe, root_path
 

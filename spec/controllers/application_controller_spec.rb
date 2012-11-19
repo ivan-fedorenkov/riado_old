@@ -11,6 +11,7 @@ describe ApplicationController do
   end
   
   describe 'Фильтры' do
+    let(:region) { FactoryGirl.create(:region, :name => "region") }
     
     describe 'Фильтр установки списка регионов' do
       before do
@@ -22,7 +23,6 @@ describe ApplicationController do
     end
 
     describe 'Фильтр установки текущего региона' do
-      let(:region) { FactoryGirl.create(:region, :name => "region") }
       it 'Должен взять текущий регион из сессиии' do
         session[:current_region] = region
         get :index

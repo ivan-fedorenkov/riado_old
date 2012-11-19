@@ -2,6 +2,5 @@
 
 FactoryGirl.define do
   factory :acol do
-    name "MyString"
   end
 end

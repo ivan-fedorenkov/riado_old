@@ -7,3 +7,7 @@ end
 То /^я должен видеть "(.*?)"$/ do |content|
   page.should have_content(content)
 end
+
+То /^я должен видеть "(.*?)" в (.*?)$/ do |content, area|
+  find(WebSupport.selector(area)).should have_content(content)
+end
