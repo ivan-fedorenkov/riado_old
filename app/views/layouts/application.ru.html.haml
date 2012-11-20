@@ -40,9 +40,9 @@
                     %h3 Выбор региона
                   .modal-body
                     %ul
-                    - @regions.each do |r|
-                      %li 
-                        = link_to r.name, set_current_region_path(:region => r.name.to_uri)
+                      - @regions.each do |r|
+                        %li
+                          = link_to r.name, set_current_region_path(:region => r.name.to_uri)
             %p
               - if @current_region.acol
                 = link_to highlight_acol_prefix(@current_region.acol.name).html_safe, root_path
