@@ -40,5 +40,5 @@
                   %ul
                   - @regions.each do |r|
                     %li 
-                      = link_to r.name, set_current_region_path(:region => r.name.to_uri)
+                      = link_to r.name, set_current_region_path(r)
 

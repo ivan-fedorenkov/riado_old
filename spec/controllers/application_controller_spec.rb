@@ -13,16 +13,22 @@ describe ApplicationController do
   describe 'Фильтры' do
     
     describe 'Фильтр установки списка регионов' do
-      before do
-        @regions = []
-        10.times { |i| @regions << FactoryGirld.create(:region, :name => "Регион#{i}") }
+      it 'Должен установить список регионов' do
+        regions = double('Список регионов') 
+        Region.should_receive(:all).and_return(regions)
         get :index
-        assigns[:regions].should == @regions
+        assigns[:regions].should == regions
       end
     end
 
     describe 'Фильтр установки текущего региона' do
-      let(:region) { FactoryGirl.create(:region, :name => "region") }
+      
+      let(:region) do 
+        region = double('Текущий регион')
+        region.stub(:id).and_return(id_double)
+        region 
+      end
+      
       it 'Должен взять текущий регион из сессиии' do
         session[:current_region] = region
         get :index
@@ -30,11 +36,13 @@ describe ApplicationController do
       end
       it 'Должен взять регион из куки если сессия не содержит текущего региона' do
         request.cookies['current_region_id'] = region.id
+        Region.should_receive(:find).with(region.id.to_s).and_return(region)
         get :index
         assigns[:current_region].should == region
       end
       it 'Должен взять регион по-умолчанию если ни сессия, ни куки не содержат региона' do
-        default_region = FactoryGirl.create(:region, :name => "default region", :default => true)
+        default_region = double('Регион по-умолчанию')
+        Region.should_receive(:default).and_return(default_region)
         get :index
         assigns[:current_region].should == default_region
       end

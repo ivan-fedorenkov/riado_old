@@ -3,10 +3,14 @@ class ApplicationController < ActionController::Base
   before_filter :set_current_region
   
   protect_from_forgery
+  
+  def index
+    render 'main_page/index'
+  end
 
 private
   def set_current_region
-    if !(request.fullpath =~ /regions\/\d+\/set_current/)
+    if !(request.fullpath =~ /regions\/.*\/set_current/)
       if session[:current_region]
         @current_region = session[:current_region]
       elsif cookies[:current_region_id]
@@ -16,7 +20,7 @@ private
       end
     end
   end
-private
+
   def set_regions
     @regions = Region.all
   end

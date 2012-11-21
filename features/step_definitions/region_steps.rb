@@ -6,6 +6,11 @@
   region.save!
 end
 
-Допустим /^я выбрал регион "(.*?)"$/ do |region|
-  visit(set_current_region_path(:region => region.to_uri))
+Допустим /^я выбрал регион "(.*?)"$/ do |region_name|
+  region = Region.find_by_name!(region_name)
+  visit(set_current_region_path(region))
 end
+
+Допустим /^я выбрал несуществующий регион$/ do
+  visit(set_current_region_path(:id => -1))  
+end 
