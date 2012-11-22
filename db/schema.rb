@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121118112833) do
+ActiveRecord::Schema.define(:version => 20121122200619) do
 
   create_table "acols", :force => true do |t|
     t.string   "name",       :null => false
@@ -21,6 +21,22 @@ ActiveRecord::Schema.define(:version => 20121118112833) do
   end
 
   add_index "acols", ["name"], :name => "index_acols_on_name", :unique => true
+
+  create_table "advocates", :force => true do |t|
+    t.string   "second_name"
+    t.string   "first_name"
+    t.string   "patronomic"
+    t.string   "reg_num"
+    t.string   "status"
+    t.string   "sex"
+    t.integer  "acol_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "advocates", ["reg_num"], :name => "index_advocates_on_reg_num", :unique => true
+  add_index "advocates", ["second_name"], :name => "index_advocates_on_second_name"
+  add_index "advocates", ["status"], :name => "index_advocates_on_status"
 
   create_table "regions", :force => true do |t|
     t.string  "name",                       :null => false
