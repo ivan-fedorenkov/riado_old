@@ -3,8 +3,11 @@
 class WebSupport
 
   def WebSupport.selector(arg)
-    if (arg == 'правой части экрана')
+    case arg 
+    when "правой части экрана"
       return "#right"
+    when "центральной части экрана"
+      return "#center"
     end
   end
 
