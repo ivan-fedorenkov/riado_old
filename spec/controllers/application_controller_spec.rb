@@ -11,7 +11,7 @@ describe ApplicationController do
   end
   
   describe 'Фильтры' do
-    
+
     describe 'Фильтр установки списка регионов' do
       it 'Должен установить список регионов' do
         regions = double('Список регионов') 

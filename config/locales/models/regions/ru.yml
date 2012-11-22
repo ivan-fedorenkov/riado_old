@@ -1,0 +1,6 @@
+ru:
+  activerecord:
+    models:
+      region: "Регион"
+    attributes:
+      name: "Название"
