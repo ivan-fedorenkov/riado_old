@@ -1,8 +1,4 @@
-module Symbolize
-  def self.included (base)
-    base.extend(ClassMethods)
-  end
-
+class ActiveRecord::Base
   # Symbolize ActiveRecord attributes. Add
   # symbolize :attr_name
   # to your model class, to make an attribute return symbols instead of
@@ -14,39 +10,38 @@ module Symbolize
   # class User < ActiveRecord::Base
   # symbolize :gender, :in => [:female, :male]
   # end
-  module ClassMethods
-    # Specifies that values of the given attributes should be returned
-    # as symbols. The table column should be created of type string.
-    def symbolize (*attr_names)
-      configuration = {}
-      configuration.update(attr_names.extract_options!)
-      
-      enum = configuration[:in] || configuration[:within]
-      
-      unless enum.nil?
-        if enum.class == Hash
-          values = enum
-          enum = enum.map { |key,value| key }
-        else
-          values = Hash[*enum.collect { |v| [v, v.to_s.capitalize] }.flatten]
-        end
-
-        attr_names.each do |attr_name|
-          attr_name = attr_name.to_s
-          class_eval("#{attr_name.upcase}_VALUES = values")
-          class_eval("def self.get_#{attr_name}_values; #{attr_name.upcase}_VALUES; end")
-        end
-        
-        class_eval("validates_inclusion_of :#{attr_names.join(', :')}, configuration")
+  # Specifies that values of the given attributes should be returned
+  # as symbols. The table column should be created of type string.
+  def self.symbolize (*attr_names)
+    configuration = {}
+    configuration.update(attr_names.extract_options!)
+    
+    enum = configuration[:in] || configuration[:within]
+    
+    unless enum.nil?
+      if enum.class == Hash
+        values = enum
+        enum = enum.map { |key,value| key }
+      else
+        values = Hash[*enum.collect { |v| [v, v.to_s.capitalize] }.flatten]
       end
 
       attr_names.each do |attr_name|
         attr_name = attr_name.to_s
-        class_eval("def #{attr_name}; read_and_symbolize_attribute('#{attr_name}'); end")
-        class_eval("def #{attr_name}= (value); write_symbolized_attribute('#{attr_name}', value); end")
+        class_eval("#{attr_name.upcase}_VALUES = values")
+        class_eval("def self.get_#{attr_name}_values; #{attr_name.upcase}_VALUES; end")
       end
+      
+      class_eval("validates_inclusion_of :#{attr_names.join(', :')}, configuration")
+    end
+
+    attr_names.each do |attr_name|
+      attr_name = attr_name.to_s
+      class_eval("def #{attr_name}; read_and_symbolize_attribute('#{attr_name}'); end")
+      class_eval("def #{attr_name}= (value); write_symbolized_attribute('#{attr_name}', value); end")
     end
   end
+  
 
   # Return an attribute's value as a symbol or nil
   def read_and_symbolize_attribute (attr_name)
@@ -58,6 +53,7 @@ module Symbolize
     write_attribute(attr_name, (value.to_sym && value.to_sym.to_s rescue nil))
   end
 end
+
 
 # The Symbol class is extended by method quoted_id which returns a string.
 # The idea behind this is, that symbols are converted to plain strings
