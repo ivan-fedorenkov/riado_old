@@ -9,6 +9,12 @@ describe AdvocatoryFormation do
   
   describe "Валидация" do
     
+    describe "Адвокатская палата" do
+      it "Должна быть указанна" do
+        create_should_raise_record_invalid(:advocatory_formation, :acol => nil)
+      end
+    end
+    
     describe "Название" do
       it "Не может быть пустым" do
         create_should_raise_record_invalid(:advocatory_formation, :name => nil)

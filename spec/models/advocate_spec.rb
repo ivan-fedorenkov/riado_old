@@ -11,6 +11,12 @@ describe Advocate do
   
   
   describe "Валидация" do
+    
+    describe "Адвокатская палата" do
+      it "Должна быть указанна" do
+        create_should_raise_record_invalid(:advocate, :acol => nil)
+      end
+    end
 
     describe "Статус" do
       it "Не может быть пустым" do
@@ -38,6 +44,22 @@ describe Advocate do
       it "Не должен быть отличен от заданного списка значений" do
         create_should_raise_record_invalid(:advocate, :sex => :invalid_sex)
       end
+    end
+    
+    describe "Адвокатское образование" do
+      
+      let(:advocatory_formation) do
+        advocatory_formation = double("Адвокатское образование")
+        advocatory_formation.stub(:id).and_return(id_double)
+        advocatory_formation.stub(:advocates).and_return([double("Адвокат 1"), double("Адвокат 2")])
+        advocatory_formation
+      end
+      
+      it "Методы установки адвокатского образования должны быть закрыты" do
+        advocate.respond_to?(:advocatory_formation=).should_not be_true 
+        advocate.respond_to?(:advocatory_formation_id=).should_not be_true
+      end
+
     end
         
   end

@@ -13,7 +13,7 @@ class AdvocatoryFormation < ActiveRecord::Base
   # Forms are restricted to the following values
   symbolize :form, :in => [:college,:bureau,:consultation,:cabinet]
   validates :name, :presence => true
-
+  
   # Validators for advocatory formations that are not college
   # Formations can't have filials and head departments, except for colleges
   with_options :unless => :college? do |options|
@@ -27,6 +27,8 @@ class AdvocatoryFormation < ActiveRecord::Base
   
   # Validates that advocate cabinet has a maximum of one advocate
   validate :cabinet_should_have_maximum_one_advocate
+  
+  validates :acol, :presence => true
   
 private
 
