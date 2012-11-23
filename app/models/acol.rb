@@ -4,4 +4,8 @@ class Acol < ActiveRecord::Base
   has_many :advocatory_formations, :dependent => :nullify
   
   validates :name, :presence => true
+  
+  def to_s
+    self.name
+  end
 end

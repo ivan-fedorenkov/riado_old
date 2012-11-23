@@ -11,6 +11,14 @@ FactoryGirl.create(:region, :name => 'Российская Федерация', 
 
 acols = [] 
 5.times { acols << FactoryGirl.create(:acol) }
+
 acols.each do |acol|
-  10.times { FactoryGirl.create(:advocate, :acol => acol) }
+  AdvocatoryFormation.get_form_values.map do |form, form_name|
+    formation = FactoryGirl.create(:advocatory_formation, :form => form)
+    number_of_advocates = 10
+    if (formation.form == :cabinet)
+      number_of_advocates = 1
+    end
+    number_of_advocates.times { formation.advocates << FactoryGirl.build(:advocate, :acol => acol) }
+  end
 end

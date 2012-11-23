@@ -3,12 +3,13 @@ ru:
     models:
       advocate: Адвокат
     attributes:
-      second_name: Фамилия
-      first_name: Имя
-      patronomic: Отчество
-      reg_num: Реестровый номер
-      sex: Пол
-      status: Статус адвоката
+      advocate:
+        second_name: Фамилия
+        first_name: Имя
+        patronomic: Отчество
+        reg_num: Реестровый номер
+        sex: Пол
+        status: Статус адвоката
     errors:
       models:
         advocate:

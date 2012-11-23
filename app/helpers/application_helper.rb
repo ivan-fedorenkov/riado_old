@@ -7,12 +7,22 @@ module ApplicationHelper
   def flash_class_for(key)
     @@flash_classes[key]
   end
-
-  def highlight_acol_prefix(acol_name)
-    if (m = acol_name.match(/^(#{Acol.model_name.human})(.*)$/))
-      return "<strong>#{m[1]}</strong>#{m[2]}"
+  
+  def t_info_review_date(datetime, format={})
+    if(format.empty?)
+      time_string = default_time_tag(datetime)
     else
-      return acol_name
+      time_string = default_time_tag(datetime, format)
     end
+
+    ("<strong>" +
+    t("activerecord.attributes.updated_at") +
+    "</strong>: " +
+    time_string).html_safe
   end
+  
+  def default_time_tag(datetime, format={:format => "%-d %B %Y"})
+    time_tag(datetime, format)
+  end
+
 end

@@ -11,7 +11,11 @@ class AdvocatoryFormation < ActiveRecord::Base
   has_many :advocates, :dependent => :nullify
   
   # Forms are restricted to the following values
-  symbolize :form, :in => [:college,:bureau,:consultation,:cabinet]
+  symbolize :form, :in => 
+    {:college => 'activerecord.attributes.advocatory_formation.forms.college',
+     :bureau => 'activerecord.attributes.advocatory_formation.forms.bureau',
+     :consultation => 'activerecord.attributes.advocatory_formation.forms.consultation',
+     :cabinet => 'activerecord.attributes.advocatory_formation.forms.cabinet'}
   validates :name, :presence => true
   
   # Validators for advocatory formations that are not college
@@ -29,6 +33,11 @@ class AdvocatoryFormation < ActiveRecord::Base
   validate :cabinet_should_have_maximum_one_advocate
   
   validates :acol, :presence => true
+  
+  
+  def to_s
+    self.name
+  end
   
 private
 

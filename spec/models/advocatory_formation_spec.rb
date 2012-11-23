@@ -95,4 +95,11 @@ describe AdvocatoryFormation do
     
   end # Валидация
   
+  describe "Методы" do
+    describe "#to_s" do
+      it "Должен возвращать название адвокатского образования" do
+        advocatory_formation.to_s.should eql(advocatory_formation.name)
+      end
+    end
+  end  
 end

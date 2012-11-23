@@ -45,4 +45,4 @@
                           = link_to r.name, set_current_region_path(r)
             %p
               - if @current_region.acol
-                = link_to highlight_acol_prefix(@current_region.acol.name).html_safe, acol_path(@current_region.acol)
+                = acol_link_with_bolded_prefix(@current_region.acol)

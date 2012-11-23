@@ -3,4 +3,5 @@ ru:
     models:
       region: "Регион"
     attributes:
-      name: "Название"
+      region:
+        name: "Название"

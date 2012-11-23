@@ -3,8 +3,14 @@ ru:
     models:
       advocatory_formation: Адвокат
     attributes:
-      name: Название
-      form: Форма образования
+      advocatory_formation:
+        name: Название
+        form: Форма образования
+        forms:
+          college: Коллегия адвокатов
+          bureau: Адвокатское бюро
+          consultation: Адвокатская консультация
+          cabinet: Адвокатский кабинет
     errors:
       models:
         advocatory_formation:

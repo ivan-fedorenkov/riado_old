@@ -3,6 +3,9 @@
 require 'spec_helper'
 
 describe Acol do
+  
+  let(:acol) { FactoryGirl.create(:acol) }
+  
   describe "Валидация" do
     describe "Название" do
       it "Должно не быть пустым" do
@@ -10,4 +13,13 @@ describe Acol do
       end
     end
   end
+  
+  describe "Методы" do
+    describe "#to_s" do
+      it "Должен возвращать название адвокатской палаты" do
+        acol.to_s.should eql(acol.name)
+      end
+    end
+  end  
+  
 end
