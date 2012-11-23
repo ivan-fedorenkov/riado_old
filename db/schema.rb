@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121122200619) do
+ActiveRecord::Schema.define(:version => 20121123123512) do
 
   create_table "acols", :force => true do |t|
     t.string   "name",       :null => false
@@ -26,10 +26,10 @@ ActiveRecord::Schema.define(:version => 20121122200619) do
     t.string   "second_name"
     t.string   "first_name"
     t.string   "patronomic"
-    t.string   "reg_num"
-    t.string   "status"
+    t.string   "reg_num",     :null => false
+    t.string   "status",      :null => false
     t.string   "sex"
-    t.integer  "acol_id"
+    t.integer  "acol_id",     :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
