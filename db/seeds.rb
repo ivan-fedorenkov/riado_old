@@ -8,6 +8,9 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 FactoryGirl.create(:region, :name => 'Российская Федерация', :default => true)
-FactoryGirl.create(:region, :name => 'Москва')
-FactoryGirl.create(:region, :name => 'Санкт-Петербург')
-FactoryGirl.create(:region, :name => 'Чеченская Республика')
+
+acols = [] 
+5.times { acols << FactoryGirl.create(:acol) }
+acols.each do |acol|
+  10.times { FactoryGirl.create(:advocate, :acol => acol) }
+end
