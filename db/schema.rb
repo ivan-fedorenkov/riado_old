@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121123123512) do
+ActiveRecord::Schema.define(:version => 20121123125115) do
 
   create_table "acols", :force => true do |t|
     t.string   "name",       :null => false
@@ -37,6 +37,18 @@ ActiveRecord::Schema.define(:version => 20121123123512) do
   add_index "advocates", ["reg_num"], :name => "index_advocates_on_reg_num", :unique => true
   add_index "advocates", ["second_name"], :name => "index_advocates_on_second_name"
   add_index "advocates", ["status"], :name => "index_advocates_on_status"
+
+  create_table "advocatory_formations", :force => true do |t|
+    t.string   "name",       :null => false
+    t.string   "form",       :null => false
+    t.integer  "acol_id",    :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "advocatory_formations", ["acol_id"], :name => "index_advocatory_formations_on_acol_id"
+  add_index "advocatory_formations", ["form"], :name => "index_advocatory_formations_on_form"
+  add_index "advocatory_formations", ["name"], :name => "index_advocatory_formations_on_name"
 
   create_table "regions", :force => true do |t|
     t.string  "name",                       :null => false
