@@ -9,7 +9,7 @@ module AcolsHelper
   end
   
   def acol_link_with_bolded_prefix(acol)
-    (link_to highlight_acol_prefix(acol.name), acol_path(acol).html_safe
+    (link_to highlight_acol_prefix(acol.name), acol_path(acol)).html_safe
   end
   
 end
