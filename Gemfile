@@ -19,9 +19,9 @@ group :assets do
   gem 'uglifier'
   gem "therubyracer"
   gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
-  gem 'twitter-bootstrap-rails'
 end
 
+gem 'twitter-bootstrap-rails'
 gem 'jquery-rails'
 
 # Use unicorn as the web server
