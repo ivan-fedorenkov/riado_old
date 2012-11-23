@@ -1,6 +1,7 @@
 class Advocate < ActiveRecord::Base
   
   belongs_to :acol
+  belongs_to :advocatory_formation
   
   # Advocate statuses enum (Symbolize library)
   symbolize :status, :in => [:active, :suspended, :stopped, :removed]

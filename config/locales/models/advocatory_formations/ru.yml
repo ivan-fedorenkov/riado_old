@@ -1,0 +1,18 @@
+ru:
+  activerecord:
+    models:
+      advocatory_formation: Адвокат
+    attributes:
+      name: Название
+      form: Форма образования
+    errors:
+      models:
+        advocatory_formation:
+          attributes:
+            advocates:
+              count: Адвокатский кабинет может с только одного адвоката
+            filials:
+              present: Данная форма адвокатского образования не может иметь филиалов
+            head_department:
+              present: Данная форма адвокатского образования не может иметь главного отделения 
+            

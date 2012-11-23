@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121123125115) do
+ActiveRecord::Schema.define(:version => 20121123165156) do
 
   create_table "acols", :force => true do |t|
     t.string   "name",       :null => false
@@ -26,27 +26,31 @@ ActiveRecord::Schema.define(:version => 20121123125115) do
     t.string   "second_name"
     t.string   "first_name"
     t.string   "patronomic"
-    t.string   "reg_num",     :null => false
-    t.string   "status",      :null => false
+    t.string   "reg_num",                 :null => false
+    t.string   "status",                  :null => false
     t.string   "sex"
-    t.integer  "acol_id",     :null => false
+    t.integer  "acol_id",                 :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "advocatory_formation_id"
   end
 
+  add_index "advocates", ["advocatory_formation_id"], :name => "index_advocates_on_advocatory_formation_id"
   add_index "advocates", ["reg_num"], :name => "index_advocates_on_reg_num", :unique => true
   add_index "advocates", ["second_name"], :name => "index_advocates_on_second_name"
   add_index "advocates", ["status"], :name => "index_advocates_on_status"
 
   create_table "advocatory_formations", :force => true do |t|
-    t.string   "name",       :null => false
-    t.string   "form",       :null => false
-    t.integer  "acol_id",    :null => false
+    t.string   "name",                    :null => false
+    t.string   "form",                    :null => false
+    t.integer  "acol_id",                 :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "advocatory_formation_id"
   end
 
   add_index "advocatory_formations", ["acol_id"], :name => "index_advocatory_formations_on_acol_id"
+  add_index "advocatory_formations", ["advocatory_formation_id"], :name => "index_advocatory_formations_on_advocatory_formation_id"
   add_index "advocatory_formations", ["form"], :name => "index_advocatory_formations_on_form"
   add_index "advocatory_formations", ["name"], :name => "index_advocatory_formations_on_name"
 
