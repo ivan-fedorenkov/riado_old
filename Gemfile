@@ -44,9 +44,9 @@ group :test do
   gem 'cucumber-rails', :require => false
   gem 'capybara'
   gem 'database_cleaner'
-  gem 'faker'
 end
 
 gem 'haml'
 gem "factory_girl_rails", "~> 4.0"
+gem 'faker'
 gem 'rails-i18n'
